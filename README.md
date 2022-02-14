@@ -1,4 +1,4 @@
-# axios-source-code
+# axios 源码共读
 
 > axios 是一个基于 promise 的 http 库，它同时支持 browser 和 nodejs 环境
 
@@ -72,6 +72,7 @@ Axios.prototype.request = function (url, config) {
     };
 });
 
+// 拦截器
 function InterceptorManager() {
     this.handler = [];
 }
@@ -84,17 +85,15 @@ function InterceptorManager() {
  *      @runWhen {Function} 函数调用传入配置对象config 如果返回false 那么当前拦截器不会加入到拦截器队列中
  *
  */
-InterceptorManager.prototype.use = function (success, fail, options) {};
+InterceptorManager.prototype.use = function (success, fail, options) {
+    // 最终往实例的handler中加入一个配置对象
+    /*
+    {
+        fulfilled: fulfilled,
+        rejected: rejected,
+        synchronous: options ? options.synchronous : false, 决定了拦截器的处理方式 异步还是同步
+        runWhen: options ? options.runWhen : null 决定了当前拦截器函数 是否会加入到队列中
+    }
+    */
+};
 ```
-
-1. 发送一个请求的过程
-
-1. 取消请求的原理
-
-1. 防 xsrf 原理
-
-1. axios.spread
-
-1. 一些基本的配置
-
-1. 封装 axios
