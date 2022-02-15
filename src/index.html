@@ -7,6 +7,25 @@
     <title>Document</title>
 </head>
 <body>
+    <script>
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function (e) {
+            // console.log(e, xhr.readyState)
+            if (this.readyState === 4 && xhr.status === 200) {
+                console.log(xhr)
+
+            }
+        }
+        xhr.onabort = function (e) {
+            console.log("请求被手动取消了", e)
+        }
+        xhr.open("get", "请求数据的地址")
+        xhr.send("我来测试一下")
+        xhr.abort()
+
+    </script>
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.25.0/axios.js"></script>
     <script>
         axios.interceptors.request.use(config => {
